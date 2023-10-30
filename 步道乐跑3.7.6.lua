@@ -1,7 +1,7 @@
 function Main()
 	menu = gg.choice({
-		"搜索数值",
-		"修改数值",
+		"1. 搜索数值",
+		"2. 修改数值",
 		"退出脚本"
 	}, nil, "脚本作者：酷安@Alex009ghc")
 	if menu == 1 then
@@ -42,21 +42,21 @@ function B()
 	if content ~= nil then
 		gg.toast("正在修改公里数")
 		gg.setValues({{ address=t[1].address + 0x18, flags=gg.TYPE_FLOAT, value=content[1], freeze=true}} )
-		sleep(1000)
+		gg.sleep(1000)
 
 		gg.toast("正在修改打卡判断距离")
 		gg.setValues({{ address=t[1].address + 0x8, flags=gg.TYPE_FLOAT, value=content[2]}} )
 		gg.setValues({{ address=t[1].address + 0x10, flags=gg.TYPE_FLOAT, value=content[2]}} )
 
-		sleep(1000)
+		gg.sleep(1000)
 		gg.toast("正在修改步数")
 		gg.setValues({{ address=t[1].address - 0x48, flags=gg.TYPE_DWORD, value=content[3]}} )
 
-		sleep(1000)
+		gg.sleep(1000)
 		gg.toast("正在修改跑步时间")
 		gg.setValues({{ address=t[1].address - 0x70, flags=gg.TYPE_DWORD, value=content[4]}} )
 
-		sleep(2000)
+		gg.sleep(2000)
 		gg.toast("修改完成")
 	end
 end
