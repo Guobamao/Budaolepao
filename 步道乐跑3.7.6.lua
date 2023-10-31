@@ -22,7 +22,6 @@ function A()
 	gg.searchNumber("42700000h;41F00000h;42C80000h;42C80000h", gg.TYPE_DWORD, false, gg.SIGN_EQUAL, 0, -1, 0)
 	gg.toast(gg.getResultsCount())
 	t = gg.getResults(50) --获取结果
-	-- 搜索到多少条结果
 	
 end
 
@@ -39,7 +38,7 @@ function B()
 		"1800"
 	})
 	-- 如果不为空则执行
-	if content ~= nil then
+	if content ~= nil then		
 		gg.toast("正在修改公里数")
 		gg.setValues({{ address=t[1].address + 0x18, flags=gg.TYPE_FLOAT, value=content[1], freeze=true}} )
 		gg.sleep(1000)
@@ -47,8 +46,21 @@ function B()
 		gg.toast("正在修改打卡判断距离")
 		gg.setValues({{ address=t[1].address + 0x8, flags=gg.TYPE_FLOAT, value=content[2]}} )
 		gg.setValues({{ address=t[1].address + 0x10, flags=gg.TYPE_FLOAT, value=content[2]}} )
-
 		gg.sleep(1000)
+
+		gg.toast("正在修改跑步公里数")
+		gg.setValues({{ address=t[1].address + 0x24,  flags=gg.TYPE_FLOAT, value=500}})
+		gg.sleep(10000)
+		gg.setValues({{ address=t[1].address + 0x24,  flags=gg.TYPE_FLOAT, value=500}})
+		gg.sleep(10000)
+		gg.setValues({{ address=t[1].address + 0x24,  flags=gg.TYPE_FLOAT, value=500}})
+		gg.sleep(10000)
+		gg.setValues({{ address=t[1].address + 0x24,  flags=gg.TYPE_FLOAT, value=500}})
+		gg.sleep(10000)
+		
+		meter = content[1] * 1000 - 2000
+		gg.setValues({{ address=t[1].address + 0x24,  flags=gg.TYPE_FLOAT, value=meter}})
+
 		gg.toast("正在修改步数")
 		gg.setValues({{ address=t[1].address - 0x48, flags=gg.TYPE_DWORD, value=content[3]}} )
 
